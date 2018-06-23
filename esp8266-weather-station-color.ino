@@ -341,8 +341,10 @@ void drawTime() {
   gfx.setTextAlignment(TEXT_ALIGN_CENTER);
   gfx.setFont(ArialRoundedMTBold_14);
   gfx.setColor(MINI_WHITE);
-  String date = ctime(&now);
-  date = date.substring(0,11) + String(1900 + timeinfo->tm_year);
+//String date = ctime(&now);
+//date = date.substring(0,11) + String(1900 + timeinfo->tm_year);
+  String date = WDAY_NAMES[timeinfo->tm_wday] +", " +String(timeinfo->tm_mday) +". "+
+                MONTH_NAMES[timeinfo->tm_mon] +" " +String(1900 + timeinfo->tm_year);
   gfx.drawString(120, 6, date);
 
   gfx.setFont(ArialRoundedMTBold_36);
@@ -443,23 +445,23 @@ void drawAstronomy() {
   
   gfx.setTextAlignment(TEXT_ALIGN_LEFT);
   gfx.setColor(MINI_YELLOW);
-  gfx.drawString(5, 250, "Sun");
+  gfx.drawString(5, 250, SUN);
   gfx.setColor(MINI_WHITE);
   time_t time = currentWeather.sunrise + dstOffset;
-  gfx.drawString(5, 276, "Rise:");
+  gfx.drawString(5, 276, SUNRISE);
   gfx.drawString(45, 276, getTime(&time));
   time = currentWeather.sunset + dstOffset;
-  gfx.drawString(5, 291, "Set:");
+  gfx.drawString(5, 291, SUNSET);
   gfx.drawString(45, 291, getTime(&time));
 
   gfx.setTextAlignment(TEXT_ALIGN_RIGHT);
   gfx.setColor(MINI_YELLOW);
-  gfx.drawString(235, 250, "Moon");
+  gfx.drawString(235, 250, MOON);
   gfx.setColor(MINI_WHITE);
   gfx.drawString(235, 276, String(moonAge) + "d");
   gfx.drawString(235, 291, String(moonData.illumination * 100, 0) + "%");
-  gfx.drawString(200, 276, "Age:");
-  gfx.drawString(200, 291, "Illum:");
+  gfx.drawString(200, 276, MOONAGE);
+  gfx.drawString(200, 291, MOONILLU);
 
 }
 
@@ -467,7 +469,7 @@ void drawCurrentWeatherDetail() {
   gfx.setFont(ArialRoundedMTBold_14);
   gfx.setTextAlignment(TEXT_ALIGN_CENTER);
   gfx.setColor(MINI_WHITE);
-  gfx.drawString(120, 2, "Current Conditions");
+  gfx.drawString(120, 2, CURRENTCONDS);
 
   //gfx.setTransparentColor(MINI_BLACK);
   //gfx.drawPalettedBitmapFromPgm(0, 20, getMeteoconIconFromProgmem(conditions.weatherIcon));
@@ -478,13 +480,15 @@ void drawCurrentWeatherDetail() {
   }
   // String weatherIcon;
   // String weatherText;
-  drawLabelValue(0, "Temperature:", currentWeather.temp + degreeSign);
-  drawLabelValue(1, "Wind Speed:", String(currentWeather.windSpeed, 1) + (IS_METRIC ? "m/s" : "mph") );
-  drawLabelValue(2, "Wind Dir:", String(currentWeather.windDeg, 1) + "°");
-  drawLabelValue(3, "Humidity:", String(currentWeather.humidity) + "%");
-  drawLabelValue(4, "Pressure:", String(currentWeather.pressure) + "hPa");
-  drawLabelValue(5, "Clouds:", String(currentWeather.clouds) + "%");
-  drawLabelValue(6, "Visibility:", String(currentWeather.visibility) + "m");
+  drawLabelValue(0, TEMPERATURE, currentWeather.temp + degreeSign);
+  drawLabelValue(1, WINDSPEED, String(currentWeather.windSpeed, 1) + (IS_METRIC ? "m/s" : "mph") );
+  drawLabelValue(2, WINDDIR, String(currentWeather.windDeg, 1) + "°");
+  drawLabelValue(3, HUMIDITY, String(currentWeather.humidity) + "%");
+  drawLabelValue(4, PRESSURE, String(currentWeather.pressure) + "hPa");
+  drawLabelValue(5, CLOUDS, String(currentWeather.clouds) + "%");
+  drawLabelValue(6, VISI, String(currentWeather.visibility) + "m");
+
+
 
 
   /*gfx.setTextAlignment(TEXT_ALIGN_LEFT);
@@ -534,7 +538,7 @@ void drawForecastTable(uint8_t start) {
   gfx.setFont(ArialRoundedMTBold_14);
   gfx.setTextAlignment(TEXT_ALIGN_CENTER);
   gfx.setColor(MINI_WHITE);
-  gfx.drawString(120, 2, "Forecasts");
+  gfx.drawString(120, 2, FORCASTS);
   uint16_t y = 0;
 
   String degreeSign = "°F";

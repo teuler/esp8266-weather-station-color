@@ -56,14 +56,33 @@ String OPEN_WEATHER_MAP_LOCATION = "Zurich,CH";
 // Slovenian - sl, Spanish - es, Turkish - tr, Ukrainian - ua, Vietnamese - vi,
 // Chinese Simplified - zh_cn, Chinese Traditional - zh_tw.
 
-String OPEN_WEATHER_MAP_LANGUAGE = "en";
+String OPEN_WEATHER_MAP_LANGUAGE = "de";
 const uint8_t MAX_FORECASTS = 10;
 
 // Adjust according to your language
-const String WDAY_NAMES[] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
-const String MONTH_NAMES[] = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-const String MOON_PHASES[] = {"New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous",
-                              "Full Moon", "Waning Gibbous", "Third quarter", "Waning Crescent"};
+const String WDAY_NAMES[] = {"So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"};
+const String MONTH_NAMES[] = {"Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"};
+const String MOON_PHASES[] = {"Neumond", "zun. Sichel", "zun. Halbmond", "zweites Viertel",
+                              "Vollmond", "drittes Viertel", "abn. Halbmond", "abn. Sichel"};
+
+const String SUN = "Sonne";
+const String SUNRISE = "auf:";
+const String SUNSET = "unter:";
+const String MOON = "Mond";
+const String MOONAGE = "Alter:";
+const String MOONILLU = "Helligk.:";
+
+const String FORCASTS = "Vorhersage";
+const String CURRENTCONDS = "Aktuell";
+
+const String TEMPERATURE = "Temperatur:";
+const String WINDSPEED = "Windgeschw.:";
+const String WINDDIR = "Windricht.:";
+const String HUMIDITY = "Luftfeucht.:";
+const String PRESSURE = "Luftdruck:";
+const String CLOUDS = "Wolken:";
+const String VISI = "Sichtweite:";
+
 
 #define UTC_OFFSET +1
 struct dstRule StartRule = {"CEST", Last, Sun, Mar, 2, 3600}; // Central European Summer Time = UTC/GMT +2 hours
